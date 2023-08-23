@@ -9,7 +9,7 @@ const state = {
   ],
   filterTodosSelect: {
     filters: [200, 100, 10],
-    defaultValue: 10,
+    value: 10,
   },
 };
 
@@ -21,7 +21,7 @@ const getters = {
 const actions = {
   async fetchTodos({ commit }) {
     const response = await axios.get(
-      `https://jsonplaceholder.typicode.com/todos?_limit=${state.filterTodosSelect.defaultValue}`
+      `https://jsonplaceholder.typicode.com/todos?_limit=${state.filterTodosSelect.value}`
     );
     commit("setTodos", response.data); // commits the response.data to the setTodos mutation
   },

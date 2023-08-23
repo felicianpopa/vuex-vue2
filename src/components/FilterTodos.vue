@@ -2,7 +2,7 @@ import { mapActions } from 'vuex';
 <template>
   <div>
     Filter todos:
-    <select v-model="filterTodosSelect.defaultValue" @change="onChange">
+    <select v-model="filterTodosSelect.value">
       <option
         v-for="optionValue in filterTodosSelect.filters"
         :key="optionValue"
@@ -15,17 +15,11 @@ import { mapActions } from 'vuex';
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex"; // maps getters from Vuex
+import { mapGetters } from "vuex"; // maps getters from Vuex
 export default {
   name: "FilterTodos",
 
   computed: mapGetters(["filterTodosSelect"]),
-  methods: {
-    ...mapActions(["fetchTodos"]),
-    onChange() {
-      this.fetchTodos();
-    },
-  },
 };
 </script>
 

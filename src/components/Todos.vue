@@ -18,7 +18,15 @@ export default {
     ...mapActions(["fetchTodos", "deleteTodo"]),
   },
   computed: {
-    ...mapGetters(["allTodos", "filterTodosSelect"]),
+    ...mapGetters(["allTodos"]),
+    filterTodosSelect() {
+      return this.$store.state.todos.filterTodosSelect.value;
+    },
+  },
+  watch: {
+    filterTodosSelect() {
+      this.fetchTodos();
+    },
   },
   mounted() {
     this.fetchTodos();
