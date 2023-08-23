@@ -35,6 +35,14 @@ const actions = {
 
     commit("removeTodo", id); // updates the state by using the removeTodo mutation
   },
+
+  async filterTodos({ commit }, limit) {
+    const response = await axios.get(
+      `https://jsonplaceholder.typicode.com/todos?_limit=${limit}`
+    );
+
+    commit("setTodos", response.data); // No need for a new mutation
+  },
 };
 
 const mutations = {
