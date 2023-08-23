@@ -10,10 +10,16 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"; // maps getters from Vuex
+import { mapGetters, mapActions } from "vuex"; // maps getters from Vuex
 export default {
   name: "Todos",
+  methods: {
+    ...mapActions(["fetchTodos"]),
+  },
   computed: mapGetters(["allTodos"]),
+  mounted() {
+    this.fetchTodos();
+  },
 };
 </script>
 
