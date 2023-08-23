@@ -29,11 +29,19 @@ const actions = {
 
     commit("newTodo", response.data); // commits the response.data to the newTodo mutation
   },
+
+  async deleteTodo({ commit }, id) {
+    await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`); // Removes from the BE
+
+    commit("removeTodo", id); // updates the state by using the removeTodo mutation
+  },
 };
 
 const mutations = {
   setTodos: (state, todos) => (state.todos = todos), // Updates the state
   newTodo: (state, todo) => state.todos.unshift(todo), // Push the new todo to the state.todos
+  removeTodo: (state, id) =>
+    (state.todos = state.todos.filter((todo) => todo.id !== id)),
 };
 
 export default {
