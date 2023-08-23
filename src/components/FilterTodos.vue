@@ -2,28 +2,28 @@ import { mapActions } from 'vuex';
 <template>
   <div>
     Filter todos:
-    <select v-model="limit" @change="onChange">
-      <option value="200">200</option>
-      <option value="100">100</option>
-      <option value="10">10</option>
+    <select v-model="filterTodosSelect.defaultValue" @change="onChange">
+      <option
+        v-for="optionValue in filterTodosSelect.filters"
+        :key="optionValue"
+        :value="optionValue"
+      >
+        {{ optionValue }}
+      </option>
     </select>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex"; // maps getters from Vuex
+import { mapActions, mapGetters } from "vuex"; // maps getters from Vuex
 export default {
   name: "FilterTodos",
-  data() {
-    return {
-      limit: 200,
-    };
-  },
+
+  computed: mapGetters(["filterTodosSelect"]),
   methods: {
-    ...mapActions(["filterTodos"]),
+    ...mapActions(["fetchTodos"]),
     onChange() {
-      console.warn(this.limit);
-      this.filterTodos(this.limit);
+      this.fetchTodos();
     },
   },
 };

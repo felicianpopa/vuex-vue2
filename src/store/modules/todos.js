@@ -7,16 +7,21 @@ const state = {
       id: 1,
     },
   ],
+  filterTodosSelect: {
+    filters: [200, 100, 10],
+    defaultValue: 10,
+  },
 };
 
 const getters = {
   allTodos: (state) => state.todos, // This is used in Todos.vue
+  filterTodosSelect: (state) => state.filterTodosSelect, // This is used in Todos.vue and FilterTodos.vue
 };
 
 const actions = {
   async fetchTodos({ commit }) {
     const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/todos"
+      `https://jsonplaceholder.typicode.com/todos?_limit=${state.filterTodosSelect.defaultValue}`
     );
     commit("setTodos", response.data); // commits the response.data to the setTodos mutation
   },
@@ -34,14 +39,6 @@ const actions = {
     await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`); // Removes from the BE
 
     commit("removeTodo", id); // updates the state by using the removeTodo mutation
-  },
-
-  async filterTodos({ commit }, limit) {
-    const response = await axios.get(
-      `https://jsonplaceholder.typicode.com/todos?_limit=${limit}`
-    );
-
-    commit("setTodos", response.data); // No need for a new mutation
   },
 };
 

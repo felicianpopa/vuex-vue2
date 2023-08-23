@@ -17,7 +17,9 @@ export default {
   methods: {
     ...mapActions(["fetchTodos", "deleteTodo"]),
   },
-  computed: mapGetters(["allTodos"]),
+  computed: {
+    ...mapGetters(["allTodos", "filterTodosSelect"]),
+  },
   mounted() {
     this.fetchTodos();
   },
