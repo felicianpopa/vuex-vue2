@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <div class="container">
+      <AddTodo />
       <Todos />
     </div>
   </div>
 </template>
 
 <script>
+import AddTodo from "./components/AddTodo.vue";
 import Todos from "./components/Todos.vue";
 export default {
   name: "App",
   components: {
     Todos,
+    AddTodo,
   },
 };
 </script>
