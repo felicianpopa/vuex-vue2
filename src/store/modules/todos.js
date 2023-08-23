@@ -15,7 +15,7 @@ const state = {
 
 const getters = {
   allTodos: (state) => state.todos, // This is used in Todos.vue
-  filterTodosSelect: (state) => state.filterTodosSelect, // This is used in Todos.vue and FilterTodos.vue
+  filterTodosSelectGetter: (state) => state.filterTodosSelect, // This is used in Todos.vue and FilterTodos.vue
 };
 
 const actions = {

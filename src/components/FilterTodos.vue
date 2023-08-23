@@ -2,9 +2,9 @@ import { mapActions } from 'vuex';
 <template>
   <div>
     Filter todos:
-    <select v-model="filterTodosSelect.value">
+    <select v-model="filterTodosSelectGetter.value">
       <option
-        v-for="optionValue in filterTodosSelect.filters"
+        v-for="optionValue in filterTodosSelectGetter.filters"
         :key="optionValue"
         :value="optionValue"
       >
@@ -19,7 +19,7 @@ import { mapGetters } from "vuex"; // maps getters from Vuex
 export default {
   name: "FilterTodos",
 
-  computed: mapGetters(["filterTodosSelect"]),
+  computed: mapGetters(["filterTodosSelectGetter"]),
 };
 </script>
 
